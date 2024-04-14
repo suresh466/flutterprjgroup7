@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'detail_screen.dart';
 import 'product.dart';
 import 'home_screen.dart';
-// import 'cart_screen.dart';
+import 'cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   final List<Product> products = [
@@ -36,7 +36,7 @@ class ProductsScreen extends StatelessWidget {
                     child: Image(
                       width: 125,
                       height: 125,
-                      image: AssetImage(products[index].picture),
+                      image: AssetImage("images/products/${products[index].picture}"),
                     ),
                   ),
                   Text(products[index].name),
@@ -48,6 +48,7 @@ class ProductsScreen extends StatelessWidget {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 1, // Set the currentIndex to 1 for the 'Products' tab
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -76,12 +77,12 @@ class ProductsScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => ProductsScreen()),
               );
               break;
-            // case 2:
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => CartScreen()),
-            //   );
-            //   break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartScreen()),
+              );
+              break;
           }
         },
       ),

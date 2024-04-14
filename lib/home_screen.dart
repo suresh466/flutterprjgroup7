@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'cart_screen.dart';
 import 'products_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -53,12 +54,12 @@ class HomeScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => ProductsScreen()),
               );
               break;
-            // case 2:
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => CartScreen()),
-            //   );
-            //   break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartScreen()),
+              );
+              break;
           }
         },
       ),

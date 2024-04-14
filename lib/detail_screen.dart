@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 import 'product.dart';
 import 'home_screen.dart';
 import 'products_screen.dart';
-// import 'cart_screen.dart';
+import 'cart_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
@@ -42,6 +43,14 @@ class _DetailScreenState extends State<DetailScreen> {
             }),
             child: const Text('Scale!'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                cartItems.add(widget.product);
+              });
+            },
+            child: const Text('Add to cart'),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -74,12 +83,12 @@ class _DetailScreenState extends State<DetailScreen> {
                 MaterialPageRoute(builder: (context) => ProductsScreen()),
               );
               break;
-            // case 2:
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => CartScreen()),
-            //   );
-            //   break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartScreen()),
+              );
+              break;
           }
         },
       ),
