@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterprjgroup7/products_screen.dart';
 
+import 'cart_screen.dart';
 import 'main.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -175,6 +177,45 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 2, // Set the currentIndex to 2 for the 'Cart' tab
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Products',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_basket),
+            label: 'Cart',
+          ),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProductsScreen()),
+              );
+              break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartScreen()),
+              );
+              break;
+          }
+        },
       ),
     );
   }

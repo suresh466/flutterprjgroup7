@@ -1,9 +1,7 @@
-// cart_screen.dart
 import 'package:flutter/material.dart';
 import 'checkout_screen.dart';
-import 'main.dart'; // Import main.dart to access cartItems
+import 'main.dart'; // import main.dart to access cartItems
 import 'products_screen.dart';
-import 'detail_screen.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -52,9 +50,11 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
           ),
-          ElevatedButton( // Use ElevatedButton if you're using Flutter 2.0.0 or above
+          ElevatedButton(
             child: Text('Go to Checkout'),
-            onPressed: () {
+            onPressed: cartItems.isEmpty
+                ? null
+                : () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => CheckoutScreen()),
@@ -84,7 +84,7 @@ class _CartScreenState extends State<CartScreen> {
             case 0:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home sweet home!")),
+                MaterialPageRoute(builder: (context) => MyHomePage()),
               );
               break;
             case 1:
