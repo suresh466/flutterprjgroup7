@@ -24,19 +24,25 @@ class _CartScreenState extends State<CartScreen> {
             child: ListView.builder(
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: Image.asset(
-                      'images/products/${cartItems[index].picture}.jpg'),
-                  title: Text(cartItems[index].name),
-                  subtitle:
+                return AnimatedOpacity(
+                  opacity: 1.0,
+                  duration: Duration(seconds: 1),
+                  child: Card(
+                    child: ListTile(
+                      leading: Image.asset(
+                          'images/products/${cartItems[index].picture}.jpg'),
+                      title: Text(cartItems[index].name),
+                      subtitle:
                       Text('\$${cartItems[index].price.toStringAsFixed(2)}'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.remove),
-                    onPressed: () {
-                      setState(() {
-                        cartItems.removeAt(index);
-                      });
-                    },
+                      trailing: IconButton(
+                        icon: Icon(Icons.remove),
+                        onPressed: () {
+                          setState(() {
+                            cartItems.removeAt(index);
+                          });
+                        },
+                      ),
+                    ),
                   ),
                 );
               },
@@ -52,16 +58,22 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
           ),
-          ElevatedButton(
-            child: Text('Go to Checkout'),
-            onPressed: cartItems.isEmpty
-                ? null
-                : () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CheckoutScreen()),
-                    );
-                  },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: 18),
+              ),
+              child: Text('Go to Checkout'),
+              onPressed: cartItems.isEmpty
+                  ? null
+                  : () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CheckoutScreen()),
+                );
+              },
+            ),
           ),
         ],
       ),

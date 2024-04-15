@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterprjgroup7/product.dart';
 import 'cart_screen.dart';
 import 'products_screen.dart';
+
 List<Product> cartItems = [];
 
 void main() {
@@ -33,6 +34,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _rotated = false;
+  Color _color = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +47,32 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              'images/logo.png',
-              width: 400,
-              height: 400,
+            AnimatedContainer(
+              duration: Duration(seconds: 1),
+              color: _color,
+              child: AnimatedRotation(
+                turns: _rotated ? 1 : 0,
+                duration: Duration(seconds: 1),
+                child: Image.asset(
+                  'images/logo.png',
+                  width: 400,
+                  height: 400,
+                ),
+              ),
             ),
             ElevatedButton(
               child: const Text('Start Shopping', style: TextStyle(fontSize: 18)),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProductsScreen()),
-                );
+                setState(() {
+                  _rotated = !_rotated;
+                  _color = _color == Colors.yellow ? Colors.white : Colors.yellow;
+                });
+                Future.delayed(Duration(seconds: 1), () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProductsScreen()),
+                  );
+                });
               },
             ),
           ],
@@ -72,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Products',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.payment),
+            icon: Icon(Icons.shopping_basket),
             label: 'Cart',
           ),
         ],

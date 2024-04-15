@@ -48,7 +48,8 @@ class _DetailScreenState extends State<DetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(widget.product.name),
-                      Text('\$${widget.product.price.toStringAsFixed(2)}'),
+                      Text(widget.product.description),
+                      Text('\$${widget.product.price.toStringAsFixed(2)}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
                     ],
                   ),
                 ),

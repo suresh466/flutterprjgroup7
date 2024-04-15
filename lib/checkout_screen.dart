@@ -160,22 +160,24 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 return null;
               },
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Order placed successfully')),
-                  );
-                  cartItems
-                      .clear(); // clear the cart items on successful checkout
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyHomePage()),
-                  );
-                }
-              },
-              child: Text('Checkout - \$${totalPrice.toStringAsFixed(2)}'),
-            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Order placed successfully')),
+                    );
+                    cartItems.clear(); // clear the cart items on successful checkout
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                    );
+                  }
+                },
+                child: Text('Checkout - \$${totalPrice.toStringAsFixed(2)}'),
+              ),
+            )
           ],
         ),
       ),
