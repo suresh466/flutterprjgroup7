@@ -25,9 +25,11 @@ class _CartScreenState extends State<CartScreen> {
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: Image.asset('images/products/${cartItems[index].picture}.jpg'),
+                  leading: Image.asset(
+                      'images/products/${cartItems[index].picture}.jpg'),
                   title: Text(cartItems[index].name),
-                  subtitle: Text('\$${cartItems[index].price.toStringAsFixed(2)}'),
+                  subtitle:
+                      Text('\$${cartItems[index].price.toStringAsFixed(2)}'),
                   trailing: IconButton(
                     icon: Icon(Icons.remove),
                     onPressed: () {
@@ -55,16 +57,16 @@ class _CartScreenState extends State<CartScreen> {
             onPressed: cartItems.isEmpty
                 ? null
                 : () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CheckoutScreen()),
-              );
-            },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CheckoutScreen()),
+                    );
+                  },
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2, // Set the currentIndex to 2 for the 'Cart' tab
+        currentIndex: 2, // set the currentIndex to 2 for the 'Cart' tab
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

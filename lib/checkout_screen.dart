@@ -42,10 +42,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               decoration: InputDecoration(labelText: 'First Name'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your first name';
+                  return 'Please enter your First Name';
                 }
                 if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
-                  return 'Invalid first name. Only alphabets and spaces are allowed.';
+                  return 'Invalid First Name, only alphabets and spaces are allowed.';
                 }
                 return null;
               },
@@ -55,10 +55,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               decoration: InputDecoration(labelText: 'Last Name'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your last name';
+                  return 'Please enter your Last Name';
                 }
                 if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-                  return 'Invalid last name. Only alphabets are allowed.';
+                  return 'Invalid Last Name, only alphabets are allowed.';
                 }
                 return null;
               },
@@ -73,7 +73,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   return 'Please enter your phone number';
                 }
                 if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
-                  return 'Invalid phone number. Please enter a 10-digit number.';
+                  return 'Invalid phone number. Please enter a 10-digit Number.';
                 }
                 return null;
               },
@@ -166,7 +166,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Order placed successfully')),
                   );
-                  cartItems.clear(); // Clear the cart items
+                  cartItems
+                      .clear(); // clear the cart items on successful checkout
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => MyHomePage()),
@@ -179,7 +180,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2, // Set the currentIndex to 2 for the 'Cart' tab
+        currentIndex: 2, // set the currentIndex to 2 for the 'Cart' tab
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

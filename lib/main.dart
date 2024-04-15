@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterprjgroup7/product.dart';
 import 'cart_screen.dart';
 import 'products_screen.dart';
+
 List<Product> cartItems = [];
 
 void main() {
@@ -34,7 +34,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Image.asset(
               'images/logo.png',
-              width: 200,
-              height: 200,
+              width: 400,
+              height: 400,
             ),
             ElevatedButton(
               child: Text('Start Shopping'),
@@ -82,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
             case 0:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: 'Home Page')),
+                MaterialPageRoute(builder: (context) => MyHomePage()),
               );
               break;
             case 1:
