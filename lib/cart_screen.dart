@@ -1,7 +1,6 @@
 // cart_screen.dart
 import 'package:flutter/material.dart';
 import 'main.dart'; // Import main.dart to access cartItems
-import 'home_screen.dart';
 import 'products_screen.dart';
 import 'detail_screen.dart';
 
@@ -75,7 +74,7 @@ class _CartScreenState extends State<CartScreen> {
             case 0:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home sweet home!")),
               );
               break;
             case 1:

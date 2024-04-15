@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutterprjgroup7/main.dart';
 import 'detail_screen.dart';
 import 'product.dart';
-import 'home_screen.dart';
 import 'cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -68,7 +68,7 @@ class ProductsScreen extends StatelessWidget {
             case 0:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => MyHomePage()),
               );
               break;
             case 1:

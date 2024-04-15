@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'product.dart';
-import 'home_screen.dart';
 import 'products_screen.dart';
 import 'cart_screen.dart';
 
@@ -74,7 +73,7 @@ class _DetailScreenState extends State<DetailScreen> {
             case 0:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => MyHomePage()),
               );
               break;
             case 1:
