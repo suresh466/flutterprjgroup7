@@ -6,8 +6,8 @@ import 'cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   final List<Product> products = [
-    Product('Product 1', 10.0, 'assets/images/product1.png', 'This is product 1'),
-    Product('Product 2', 20.0, 'assets/images/product2.png', 'This is product 2'),
+    Product(1, 'Product 1', 10.0, 'assets/images/product1.png', 'This is product 1'),
+    Product(2, 'Product 2', 20.0, 'assets/images/product2.png', 'This is product 2'),
     // Add more products here
   ];
 

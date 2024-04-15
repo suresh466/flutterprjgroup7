@@ -54,7 +54,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, // Set the currentIndex to 1 for the 'Products' tab
+        currentIndex: 1, // set the currentIndex to 1 for the 'Products' tab
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
