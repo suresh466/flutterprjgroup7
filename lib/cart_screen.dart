@@ -1,5 +1,6 @@
 // cart_screen.dart
 import 'package:flutter/material.dart';
+import 'checkout_screen.dart';
 import 'main.dart'; // Import main.dart to access cartItems
 import 'products_screen.dart';
 import 'detail_screen.dart';
@@ -50,6 +51,15 @@ class _CartScreenState extends State<CartScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+          ),
+          ElevatedButton( // Use ElevatedButton if you're using Flutter 2.0.0 or above
+            child: Text('Go to Checkout'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CheckoutScreen()),
+              );
+            },
           ),
         ],
       ),
