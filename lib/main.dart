@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterprjgroup7/product.dart';
 import 'cart_screen.dart';
 import 'products_screen.dart';
-
 List<Product> cartItems = [];
 
 void main() {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'BatCave',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
       home: const MyHomePage(title: 'BatCave'),
     );
@@ -34,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 400,
             ),
             ElevatedButton(
-              child: Text('Start Shopping'),
+              child: const Text('Start Shopping', style: TextStyle(fontSize: 18)),
               onPressed: () {
                 Navigator.push(
                   context,

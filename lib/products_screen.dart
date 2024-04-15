@@ -45,21 +45,38 @@ class ProductsScreen extends StatelessWidget {
               );
             },
             child: Card(
-              color: Colors.blue,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+              child: Row(
                 children: [
                   Hero(
                     tag: products[index].picture,
-                    child: Image(
-                      width: 125,
-                      height: 125,
-                      image: AssetImage(
-                          'images/products/${products[index].picture}.jpg'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image(
+                        width: 125,
+                        height: 125,
+                        image: AssetImage(
+                            'images/products/${products[index].picture}.jpg'),
+                      ),
                     ),
                   ),
-                  Text(products[index].name),
-                  Text('\$${products[index].price.toStringAsFixed(2)}'),
+                  Expanded(
+                    child: ListTile(
+                      title: Text(
+                        products[index].name,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(
+                        '\$${products[index].price.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.grey[700],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
