@@ -21,35 +21,65 @@ class _DetailScreenState extends State<DetailScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.product.name)),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedContainer(
-            width: _size ? 200 : 600,
-            height: _size ? 100 : 400,
-            duration: const Duration(seconds: 1),
-            child: Hero(
-              tag: widget.product.picture,
-              child: Image(
-                image:
-                    AssetImage('images/products/${widget.product.picture}.jpg'),
-              ),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: AnimatedOpacity(
+                    opacity: _size ? 1 : 0.25,
+                    duration: const Duration(seconds: 1),
+                    child: AnimatedContainer(
+                      width: _size ? null : 200,
+                      height: _size ? null : 200,
+                      alignment: _size ? null: Alignment.topRight,
+                      duration: const Duration(seconds: 1),
+                      child: Hero(
+                        tag: widget.product.picture,
+                        child: Image(
+                          image: AssetImage('images/products/${widget.product.picture}.jpg'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(widget.product.name),
+                      Text('\$${widget.product.price.toStringAsFixed(2)}'),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-          Text(widget.product.name),
-          Text('\$${widget.product.price.toStringAsFixed(2)}'),
-          ElevatedButton(
-            onPressed: () => setState(() {
-              _size = !_size;
-            }),
-            child: const Text('Scale!'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                cartItems.add(widget.product);
-              });
-            },
-            child: const Text('Add to cart'),
+          Padding(
+            padding: const EdgeInsets.all(48.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: 18),
+              ),
+              onPressed: () {
+                setState(() {
+                  _size = !_size;
+                  cartItems.add(widget.product);
+                });
+                Future.delayed(const Duration(seconds: 1), () {
+                  setState(() {
+                    _size = !_size;
+                  });
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('${widget.product.name} added to cart'),
+                    duration: Duration(seconds: 1),
+                  ),
+                );
+              },
+              child: const Text('Add to cart'),
+            ),
           ),
         ],
       ),
