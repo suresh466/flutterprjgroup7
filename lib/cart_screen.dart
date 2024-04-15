@@ -26,7 +26,7 @@ class _CartScreenState extends State<CartScreen> {
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: Image.asset(cartItems[index].picture),
+                  leading: Image.asset('images/products/${cartItems[index].picture}.jpg'),
                   title: Text(cartItems[index].name),
                   subtitle: Text('\$${cartItems[index].price.toStringAsFixed(2)}'),
                   trailing: IconButton(

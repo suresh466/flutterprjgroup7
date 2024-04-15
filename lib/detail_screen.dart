@@ -30,7 +30,7 @@ class _DetailScreenState extends State<DetailScreen> {
             child: Hero(
               tag: widget.product.picture,
               child: Image(
-                image: AssetImage(widget.product.picture),
+                image: AssetImage('images/products/${widget.product.picture}.jpg'),
               ),
             ),
           ),

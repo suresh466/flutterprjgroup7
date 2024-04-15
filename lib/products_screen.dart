@@ -6,9 +6,25 @@ import 'cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   final List<Product> products = [
-    Product(1, 'Product 1', 10.0, 'assets/images/product1.png', 'This is product 1'),
-    Product(2, 'Product 2', 20.0, 'assets/images/product2.png', 'This is product 2'),
-    // Add more products here
+    Product(1, 'Miniature Bat Mobile', 19.99, 'bat_mobile',
+        'A detailed miniature replica of the iconic Bat Mobile.'),
+    Product(2, 'Bat Grappler', 29.99, 'bat_grappler',
+        "A fun replica of Batman's grappler. Not suitable for climbing."),
+    Product(3, 'Batman Hoodie', 40.99, 'bat_hoodie',
+        'High quality batman logo printed hoodie.'),
+    Product(4, 'Printed Tshirt', 10.22, 'printed_tshirt',
+        'A batman logo printed tshirt'),
+    Product(5, 'Batman Model', 80.99, 'bat_model',
+        'A series of limited edition batman toy'),
+    Product(6, 'Joker collection', 120.99, 'joker_collection',
+        'A limited edition batman collection'),
+    Product(7, 'Batman Collection', 160.99, 'bat_collection',
+        'Batman latest collection. Special discount included.'),
+    Product(8, 'Batman costume', 20.99, 'bat_costume',
+        'Batman costume for cosplay. Stretchable fabric. Sizes available!'),
+    Product(9, 'Printed mug', 5.99, 'printed_mug', 'A batman logo printed mug'),
+    Product(10, 'Decorative cupcakes', 2.99, 'decorative_cupcakes',
+        'Decorative batman cupcakes. Made of rubber.'),
   ];
 
   @override
@@ -23,7 +39,9 @@ class ProductsScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DetailScreen(product: products[index])),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        DetailScreen(product: products[index])),
               );
             },
             child: Card(
@@ -36,7 +54,8 @@ class ProductsScreen extends StatelessWidget {
                     child: Image(
                       width: 125,
                       height: 125,
-                      image: AssetImage("images/products/${products[index].picture}"),
+                      image: AssetImage(
+                          'images/products/${products[index].picture}.jpg'),
                     ),
                   ),
                   Text(products[index].name),

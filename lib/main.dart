@@ -45,8 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Logo Here'),
-            CupertinoButton(
+            Image.asset(
+              'images/logo.png',
+              width: 200,
+              height: 200,
+            ),
+            ElevatedButton(
               child: Text('Start Shopping'),
               onPressed: () {
                 Navigator.push(
