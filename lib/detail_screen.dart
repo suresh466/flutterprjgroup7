@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'checkout_screen.dart';
 import 'main.dart';
 import 'product.dart';
 import 'products_screen.dart';
-import 'cart_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
@@ -65,21 +65,22 @@ class _DetailScreenState extends State<DetailScreen> {
               onPressed: () {
                 setState(() {
                   _size = !_size;
-                  cartItems.add(widget.product);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CheckoutScreen(),
+                    settings: RouteSettings(
+                      arguments: widget.product.price
+                    ),
+                    ),
+                  );
                 });
                 Future.delayed(const Duration(seconds: 1), () {
                   setState(() {
                     _size = !_size;
                   });
                 });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('${widget.product.name} added to cart'),
-                    duration: Duration(seconds: 1),
-                  ),
-                );
               },
-              child: const Text('Add to cart'),
+              child: const Text('Buy Now'),
             ),
           ),
         ],
@@ -95,10 +96,6 @@ class _DetailScreenState extends State<DetailScreen> {
             icon: Icon(Icons.shopping_cart),
             label: 'Products',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: 'Cart',
-          ),
         ],
         onTap: (index) {
           switch (index) {
@@ -112,12 +109,6 @@ class _DetailScreenState extends State<DetailScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProductsScreen()),
-              );
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CartScreen()),
               );
               break;
           }

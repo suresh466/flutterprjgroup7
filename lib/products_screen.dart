@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterprjgroup7/main.dart';
 import 'detail_screen.dart';
 import 'product.dart';
-import 'cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   final List<Product> products = [
@@ -94,10 +93,6 @@ class ProductsScreen extends StatelessWidget {
             icon: Icon(Icons.shopping_cart),
             label: 'Products',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: 'Cart',
-          ),
         ],
         onTap: (index) {
           switch (index) {
@@ -111,12 +106,6 @@ class ProductsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProductsScreen()),
-              );
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CartScreen()),
               );
               break;
           }

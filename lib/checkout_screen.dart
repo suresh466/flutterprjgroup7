@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterprjgroup7/products_screen.dart';
 
-import 'cart_screen.dart';
 import 'main.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -20,14 +19,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   final _streetController = TextEditingController();
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
-  final _zipController = TextEditingController();
+  final _postalController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    double totalPrice = 0;
-    cartItems.forEach((item) {
-      totalPrice += item.price;
-    });
+    final double totalPrice = ModalRoute.of(context)?.settings.arguments as double;
     return Scaffold(
       appBar: AppBar(
         title: Text('Checkout'),
@@ -136,7 +132,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ),
             TextFormField(
               controller: _stateController,
-              decoration: InputDecoration(labelText: 'State'),
+              decoration: InputDecoration(labelText: 'Province'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your state';
@@ -148,14 +144,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               },
             ),
             TextFormField(
-              controller: _zipController,
-              decoration: InputDecoration(labelText: 'Zip Code'),
+              controller: _postalController,
+              decoration: InputDecoration(labelText: 'Postal Code'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your zip code';
+                  return 'Please enter your postal code';
                 }
-                if (!RegExp(r'^[a-zA-Z0-9]{5,6}$').hasMatch(value)) {
-                  return 'Invalid postal code. Please enter a valid code with 5 or 6 characters.';
+                if (!RegExp(r'^[a-zA-Z0-9]{6}$').hasMatch(value)) {
+                  return 'Invalid Postal Code. Please enter a valid code with 6 characters.';
                 }
                 return null;
               },
@@ -168,7 +164,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Order placed successfully')),
                     );
-                    cartItems.clear(); // clear the cart items on successful checkout
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => MyHomePage()),
@@ -182,7 +177,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2, // set the currentIndex to 2 for the 'Cart' tab
+        currentIndex: 1, // set the currentIndex to 1 for the 'Products' tab
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -191,10 +186,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Products',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: 'Cart',
           ),
         ],
         onTap: (index) {
@@ -209,12 +200,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProductsScreen()),
-              );
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CartScreen()),
               );
               break;
           }
