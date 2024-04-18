@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterprjgroup7/product.dart';
 import 'products_screen.dart';
 
 void main() {
@@ -7,14 +6,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'BatCave',
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.yellowAccent,
+          primary: Colors.green,
+        ),
+        useMaterial3: true,
       ),
       home: const MyHomePage(title: 'BatCave'),
     );
@@ -22,12 +25,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, this.title = "BatCave"}) : super(key: key);
+  const MyHomePage({super.key, this.title = "BatCave"});
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
