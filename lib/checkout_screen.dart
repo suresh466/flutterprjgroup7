@@ -5,11 +5,18 @@ import 'package:flutterprjgroup7/products_screen.dart';
 import 'main.dart';
 
 class CheckoutScreen extends StatefulWidget {
+  final double totalPrice;
+  const CheckoutScreen({super.key, required this.totalPrice});
+
   @override
-  _CheckoutScreenState createState() => _CheckoutScreenState();
+  State<StatefulWidget> createState() =>
+      _CheckoutScreenState(totalPrice: totalPrice);
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  _CheckoutScreenState({required this.totalPrice});
+  final double totalPrice;
+
   final _formKey = GlobalKey<FormState>();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
@@ -23,7 +30,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double totalPrice = ModalRoute.of(context)?.settings.arguments as double;
     return Scaffold(
       appBar: AppBar(
         title: Text('Checkout'),
@@ -170,7 +176,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     );
                   }
                 },
-                child: Text('Checkout - \$${totalPrice.toStringAsFixed(2)}'),
+                child: Text('Checkout - \$${widget.totalPrice.toStringAsFixed(2)}'),
               ),
             )
           ],

@@ -4,30 +4,32 @@ import 'detail_screen.dart';
 import 'product.dart';
 
 class ProductsScreen extends StatelessWidget {
-  final List<Product> products = [
-    Product(1, 'Miniature Bat Mobile', 19.99, 'bat_mobile',
-        'A detailed miniature replica of the iconic Bat Mobile.'),
-    Product(2, 'Bat Grappler', 29.99, 'bat_grappler',
-        "A fun replica of Batman's grappler. Not suitable for climbing."),
-    Product(3, 'Batman Hoodie', 40.99, 'bat_hoodie',
-        'High quality batman logo printed hoodie.'),
-    Product(4, 'Printed Tshirt', 10.22, 'printed_tshirt',
-        'A batman logo printed tshirt'),
-    Product(5, 'Batman Model', 80.99, 'bat_model',
-        'A series of limited edition batman toy'),
-    Product(6, 'Joker collection', 120.99, 'joker_collection',
-        'A limited edition batman collection'),
-    Product(7, 'Batman Collection', 160.99, 'bat_collection',
-        'Batman latest collection. Special discount included.'),
-    Product(8, 'Batman costume', 20.99, 'bat_costume',
-        'Batman costume for cosplay. Stretchable fabric. Sizes available!'),
-    Product(9, 'Printed mug', 5.99, 'printed_mug', 'A batman logo printed mug'),
-    Product(10, 'Decorative cupcakes', 2.99, 'decorative_cupcakes',
-        'Decorative batman cupcakes. Made of rubber.'),
-  ];
+  const ProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Product> products = [
+      Product(1, 'Miniature Bat Mobile', 19.99, 'bat_mobile',
+          'A detailed miniature replica of the iconic Bat Mobile.'),
+      Product(2, 'Bat Grappler', 29.99, 'bat_grappler',
+          "A fun replica of Batman's grappler. Not suitable for climbing."),
+      Product(3, 'Batman Hoodie', 40.99, 'bat_hoodie',
+          'High quality batman logo printed hoodie.'),
+      Product(4, 'Printed Tshirt', 10.22, 'printed_tshirt',
+          'A batman logo printed tshirt'),
+      Product(5, 'Batman Model', 80.99, 'bat_model',
+          'A series of limited edition batman toy'),
+      Product(6, 'Joker collection', 120.99, 'joker_collection',
+          'A limited edition batman collection'),
+      Product(7, 'Batman Collection', 160.99, 'bat_collection',
+          'Batman latest collection. Special discount included.'),
+      Product(8, 'Batman costume', 20.99, 'bat_costume',
+          'Batman costume for cosplay. Stretchable fabric. Sizes available!'),
+      Product(9, 'Printed mug', 5.99, 'printed_mug', 'A batman logo printed mug'),
+      Product(10, 'Decorative cupcakes', 2.99, 'decorative_cupcakes',
+          'Decorative batman cupcakes. Made of rubber.'),
+    ];
+
     return Scaffold(
       appBar: AppBar(title: Text('Products')),
       body: ListView.builder(

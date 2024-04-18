@@ -5,21 +5,23 @@ import 'product.dart';
 import 'products_screen.dart';
 
 class DetailScreen extends StatefulWidget {
+  const DetailScreen({super.key, required this.product});
   final Product product;
 
-  const DetailScreen({super.key, required this.product});
-
   @override
-  _DetailScreenState createState() => _DetailScreenState();
+  State<StatefulWidget> createState() =>
+      _DetailScreenState(product: product);
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  _DetailScreenState({required this.product});
+  final Product product;
   bool _size = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.product.name)),
+      appBar: AppBar(title: Text(product.name)),
       body: Column(
         children: [
           Expanded(
@@ -35,9 +37,9 @@ class _DetailScreenState extends State<DetailScreen> {
                       alignment: _size ? null: Alignment.topRight,
                       duration: const Duration(seconds: 1),
                       child: Hero(
-                        tag: widget.product.picture,
+                        tag: product.picture,
                         child: Image(
-                          image: AssetImage('images/products/${widget.product.picture}.jpg'),
+                          image: AssetImage('images/products/${product.picture}.jpg'),
                         ),
                       ),
                     ),
@@ -47,9 +49,9 @@ class _DetailScreenState extends State<DetailScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(widget.product.name),
-                      Text(widget.product.description),
-                      Text('\$${widget.product.price.toStringAsFixed(2)}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
+                      Text(product.name),
+                      Text(product.description),
+                      Text('\$${product.price.toStringAsFixed(2)}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
                     ],
                   ),
                 ),
@@ -67,10 +69,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   _size = !_size;
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CheckoutScreen(),
-                    settings: RouteSettings(
-                      arguments: widget.product.price
-                    ),
+                    MaterialPageRoute(builder: (context) => CheckoutScreen(totalPrice: product.price),
                     ),
                   );
                 });
