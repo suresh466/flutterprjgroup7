@@ -47,17 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            AnimatedContainer(
+            AnimatedRotation(
+              turns: _rotated ? 1 : 0,
               duration: Duration(seconds: 1),
-              color: _color,
-              child: AnimatedRotation(
-                turns: _rotated ? 1 : 0,
-                duration: Duration(seconds: 1),
-                child: Image.asset(
-                  'images/logo.png',
-                  width: 400,
-                  height: 400,
-                ),
+              child: Image.asset(
+                'images/logo.png',
+                width: 400,
+                height: 400,
               ),
             ),
             ElevatedButton(
@@ -65,7 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 setState(() {
                   _rotated = !_rotated;
-                  _color = _color == Colors.yellow ? Colors.white : Colors.yellow;
                 });
                 Future.delayed(Duration(seconds: 1), () {
                   Navigator.push(
