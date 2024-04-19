@@ -28,44 +28,67 @@ class _DetailScreenState extends State<DetailScreen> {
               children: [
                 Expanded(
                   child: AnimatedOpacity(
-                      opacity: _trigger ? 0 : 1,
+                    opacity: _trigger ? 0 : 1,
+                    duration: const Duration(seconds: 1),
+                    child: AnimatedContainer(
+                      width: _trigger ? 100 : null,
+                      height: _trigger ? 100 : null,
                       duration: const Duration(seconds: 1),
-                      child: AnimatedContainer(
-                        width: _trigger ? 100 : null,
-                        height: _trigger ? 100 : null,
-                        duration: const Duration(seconds: 1),
-                        child: AnimatedSlide(
-                          offset: _trigger ? Offset(.5, 3.5) : Offset(0,0),
-                          duration: Duration(seconds: 1),
-                          child: Hero(
-                            tag: product.picture,
-                            child: Image(
-                              image: AssetImage(
-                                  'images/products/${product.picture}.jpg'),
-                            ),
+                      child: AnimatedSlide(
+                        offset: _trigger ? Offset(.5, 3.5) : Offset(0,0),
+                        duration: Duration(seconds: 1),
+                        child: Hero(
+                          tag: product.picture,
+                          child: Image(
+                            image: AssetImage('images/products/${product.picture}.jpg'),
                           ),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(product.name),
-                      Text(product.description),
-                      Text('\$${product.price.toStringAsFixed(2)}',
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.name,
                           style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                    ],
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          product.description,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          '\$${product.price.toStringAsFixed(2)}',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(48.0),
+            padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 textStyle: TextStyle(fontSize: 18),
@@ -77,8 +100,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            CheckoutScreen(totalPrice: product.price),
+                        builder: (context) => CheckoutScreen(totalPrice: product.price),
                       ),
                     );
                   });
