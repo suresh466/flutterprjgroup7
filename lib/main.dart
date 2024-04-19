@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _rotated = false;
-  Color _color = Colors.white;
+  bool _animate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +50,23 @@ class _MyHomePageState extends State<MyHomePage> {
             AnimatedRotation(
               turns: _rotated ? 1 : 0,
               duration: Duration(seconds: 1),
-              child: Image.asset(
-                'images/logo.png',
-                width: 400,
-                height: 400,
+              child: AnimatedContainer(
+                duration: Duration(seconds: 1),
+                alignment: _animate ? Alignment.centerRight : null,
+                child: Image.asset(
+                  'images/logo.png',
+                  width: 400,
+                  height: 400,
+                ),
               ),
             ),
             ElevatedButton(
-              child: const Text('Start Shopping', style: TextStyle(fontSize: 18)),
+              child:
+                  const Text('Start Shopping', style: TextStyle(fontSize: 18)),
               onPressed: () {
                 setState(() {
                   _rotated = !_rotated;
+                  _animate = !_animate;
                 });
                 Future.delayed(Duration(seconds: 1), () {
                   Navigator.push(

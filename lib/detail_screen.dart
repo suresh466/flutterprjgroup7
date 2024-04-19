@@ -9,14 +9,13 @@ class DetailScreen extends StatefulWidget {
   final Product product;
 
   @override
-  State<StatefulWidget> createState() =>
-      _DetailScreenState(product: product);
+  State<StatefulWidget> createState() => _DetailScreenState(product: product);
 }
 
 class _DetailScreenState extends State<DetailScreen> {
   _DetailScreenState({required this.product});
   final Product product;
-  bool _size = true;
+  bool _trigger = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +28,24 @@ class _DetailScreenState extends State<DetailScreen> {
               children: [
                 Expanded(
                   child: AnimatedOpacity(
-                    opacity: _size ? 1 : 0.25,
-                    duration: const Duration(seconds: 1),
-                    child: AnimatedContainer(
-                      width: _size ? null : 200,
-                      height: _size ? null : 200,
-                      alignment: _size ? null: Alignment.topRight,
+                      opacity: _trigger ? 0 : 1,
                       duration: const Duration(seconds: 1),
-                      child: Hero(
-                        tag: product.picture,
-                        child: Image(
-                          image: AssetImage('images/products/${product.picture}.jpg'),
+                      child: AnimatedContainer(
+                        width: _trigger ? 100 : null,
+                        height: _trigger ? 100 : null,
+                        duration: const Duration(seconds: 1),
+                        child: AnimatedSlide(
+                          offset: _trigger ? Offset(.5, 3.5) : Offset(0,0),
+                          duration: Duration(seconds: 1),
+                          child: Hero(
+                            tag: product.picture,
+                            child: Image(
+                              image: AssetImage(
+                                  'images/products/${product.picture}.jpg'),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
+                      )),
                 ),
                 Expanded(
                   child: Column(
@@ -51,7 +53,11 @@ class _DetailScreenState extends State<DetailScreen> {
                     children: [
                       Text(product.name),
                       Text(product.description),
-                      Text('\$${product.price.toStringAsFixed(2)}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
+                      Text('\$${product.price.toStringAsFixed(2)}',
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black)),
                     ],
                   ),
                 ),
@@ -66,16 +72,15 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
               onPressed: () {
                 setState(() {
-                  _size = !_size;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CheckoutScreen(totalPrice: product.price),
-                    ),
-                  );
-                });
-                Future.delayed(const Duration(seconds: 1), () {
-                  setState(() {
-                    _size = !_size;
+                  _trigger = !_trigger;
+                  Future.delayed(Duration(seconds: 1), () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            CheckoutScreen(totalPrice: product.price),
+                      ),
+                    );
                   });
                 });
               },
