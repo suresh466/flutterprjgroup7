@@ -49,9 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             AnimatedRotation(
               turns: _rotated ? 1 : 0,
-              duration: Duration(seconds: 1),
+              duration: Duration(seconds: 2),
               child: AnimatedContainer(
-                duration: Duration(seconds: 1),
+                duration: Duration(seconds: 2),
                 alignment: _animate ? Alignment.centerRight : null,
                 child: Image.asset(
                   'images/logo.png',
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   _rotated = !_rotated;
                   _animate = !_animate;
                 });
-                Future.delayed(Duration(seconds: 1), () {
+                Future.delayed(Duration(seconds: 2), () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ProductsScreen()),

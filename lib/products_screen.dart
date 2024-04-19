@@ -62,17 +62,20 @@ class ProductsScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: ListTile(
-                      title: Text(
+                      title:                         Text(
                         products[index].name,
-                        style: const TextStyle(
-                          fontSize: 18.0,
+                        style: TextStyle(
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.green,
                         ),
                       ),
+
                       subtitle: Text(
                         '\$${products[index].price.toStringAsFixed(2)}',
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                           color: Colors.grey[700],
                         ),
                       ),
